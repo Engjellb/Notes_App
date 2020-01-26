@@ -8,7 +8,7 @@
   </panel>
 </template>
 <script>
-import Panel from './global/Panel'
+import Panel from './Panel'
 
 export default {
   components: {

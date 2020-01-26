@@ -3,7 +3,7 @@
     <nav>
       <v-app-bar class="blue-grey darken-2" app dark flat>
 
-        <v-app-bar-nav-icon class="d-flex d-sm-none"  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
         <v-img src="../assets/Notes.png" max-width="45" class="d-none d-sm-flex"></v-img>
         <v-toolbar-title style="width:108px" 
@@ -51,6 +51,22 @@
           </v-list-item-icon>
           <v-list-item-content>Sign Up</v-list-item-content>
         </v-list-item>
+        <v-list-item>
+            <router-link to="/AddNotes" tag="v-list-item" style="cursor:pointer;">
+              <v-list-item-icon style="float:left;">
+                  <v-icon>add_box</v-icon>
+              </v-list-item-icon>
+                <v-list-item-content style="padding-top:16px;">Add Note</v-list-item-content>
+            </router-link>
+        </v-list-item>
+        <v-list-item>
+            <router-link to="/Notes" tag="v-list-item" style="cursor:pointer;">
+              <v-list-item-icon style="float:left;">
+                  <v-icon>archive</v-icon>
+              </v-list-item-icon>
+                <v-list-item-content style="padding-top:16px;">Notes</v-list-item-content>
+            </router-link>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     </div>
@@ -65,3 +81,6 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>
