@@ -29,4 +29,11 @@ router.put('/:id', (req, res) => {
         res.json(editedNote)
     })
 })
+
+router.delete('/:id', (req, res) => {
+    Notes.findByIdAndRemove(req.params.id, (err, removeNote) => {
+        if (err) throw err
+        res.json(removeNote)
+    })
+})
 module.exports = router

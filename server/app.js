@@ -5,13 +5,15 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const configDB = require('./config/Database')
 const notes = require('./routes/notes')
+const users = require('./routes/users')
 
 const app = express()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan('combined'))
+app.use(bodyParser.json())
 app.use(cors())
+
 
 mongoose.connect(configDB.DB, {
     useNewUrlParser: true,
@@ -21,7 +23,7 @@ mongoose.connect(configDB.DB, {
   .catch((err) => console.log(err))
 
 app.use('/notes', notes)
-
+app.use('/users', users)
 
 const port = process.env.PORT || 8081
 

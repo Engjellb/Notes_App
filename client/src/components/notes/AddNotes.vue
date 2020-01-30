@@ -26,7 +26,10 @@ export default {
         axios.post('http://localhost:8081/notes', this.notes)
           .then(this.$router.push({
             name: 'Notes'
-          }))
+          })).then((response) => {
+            //eslint-disable-next-line
+            console.log(response)
+          })
       }
     }
 }
