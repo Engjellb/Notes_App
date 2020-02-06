@@ -26,10 +26,9 @@ export default {
   methods: {
     SignUp () {
       axios.post('http://localhost:8081/users', this.users)
-        .then(response => {
-          //eslint-disable-next-line
-          console.log(response)
-        })
+        .then(this.$router.push({
+          name: 'Notes'
+        }))
     }
   }
 }

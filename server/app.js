@@ -14,7 +14,6 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-
 mongoose.connect(configDB.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true

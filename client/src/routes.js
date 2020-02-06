@@ -8,7 +8,7 @@ import EditNotes from './components/notes/EditNotes.vue'
 const routes = [
     {path: '/SignUp', component: SignUp},
     {path: '/', name: 'Home', component: Home},
-    {path: '/SignIn', component: SignIn},
+    {path: '/SignIn', name: 'SignIn', component: SignIn},
     {path: '/AddNotes',name: 'AddNotes', component: AddNotes},
     {path: '/Notes',name: 'Notes', component: ShowNotes},
     {path: '/EditNote/:id', name: 'EditNote', component: EditNotes}

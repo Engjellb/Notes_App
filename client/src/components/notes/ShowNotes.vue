@@ -5,7 +5,7 @@
         <v-card>
           <v-list-item>
             <v-list-item-content>
-              <div class="overline mb-4">One minute ago</div>
+              <div class="overline mb-4">{{notes.createdAt | parseDate}}</div>
               <v-list-item-title class="headline mb-1">{{notes.Title}}</v-list-item-title>
               <v-list-item-subtitle class="mt-4">{{notes.Description}}</v-list-item-subtitle>
             </v-list-item-content>
@@ -48,6 +48,7 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
   data () {
@@ -57,13 +58,15 @@ export default {
       showNoteMessage: false
     }
   },
+  /*eslint-disable*/
   mounted () {
       axios.get('http://localhost:8081/notes')
         .then((response) => {
             if (Object.keys(response.data).length === 0){
               this.showNoteMessage = true
             }
-            this.showNotes = response.data
+            
+            this.showNotes = response.data           
       })
   },
   methods: {
@@ -76,6 +79,13 @@ export default {
           .catch(e => {
             this.errors.push(e)
           })
+    }
+  },
+  filters: {
+    parseDate(value) {
+      if (!value) return null;
+
+      return moment(value).format("MMM Do YY");
     }
   }
 }
