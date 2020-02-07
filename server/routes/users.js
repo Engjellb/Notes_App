@@ -57,7 +57,8 @@ router.post('/signin', async (req, res) => {
         jwt.sign(payload, 'secret', {expiresIn: 3600}, (err, token) => {
             if (err) throw err
             res.status(200).send({
-                token
+                token,
+                user
             })
         })
 

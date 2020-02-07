@@ -10,10 +10,10 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    Notes.find((err, notes) => {
+      Notes.find((err, notes) => {
         if (err) throw err
         res.json(notes)
-    })
+      })
 })
 
 router.get('/:id', (req, res) => {

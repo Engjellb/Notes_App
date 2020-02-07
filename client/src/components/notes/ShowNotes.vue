@@ -65,7 +65,11 @@ export default {
             if (Object.keys(response.data).length === 0){
               this.showNoteMessage = true
             }
-            
+            if (this.$store.state.token == null) {
+              this.$router.push({
+                name: 'SignIn'
+              })
+            }
             this.showNotes = response.data           
       })
   },
@@ -73,9 +77,6 @@ export default {
     deleteNote (noteId) {
         axios.delete('http://localhost:8081/notes/'+ noteId)
           .then(this.dialog = false)
-          .then(this.$router.push({
-            name: 'Home'
-          }))
           .catch(e => {
             this.errors.push(e)
           })
