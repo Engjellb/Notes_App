@@ -81,11 +81,21 @@
         <v-spacer></v-spacer>
         <v-list-item v-if="$store.state.isUserLoggedIn">
             <router-link
-            to="/Notes" tag="v-list-item" style="cursor:pointer;">
+            to="/" tag="v-list-item" style="cursor:pointer;">
               <v-list-item-icon style="float:left;">
                   <v-icon>assignment_return</v-icon>
               </v-list-item-icon>
-                <v-list-item-content style="padding-top:16px;">Sign Out</v-list-item-content>
+                <v-list-item-content @click="signout"
+                style="padding-top:16px;">Sign Out</v-list-item-content>
+            </router-link>
+        </v-list-item>
+        <v-list-item v-if="$store.state.isUserLoggedIn">
+            <router-link
+            to="/AddCategory" tag="v-list-item" style="cursor:pointer;">
+              <v-list-item-icon style="float:left;">
+                  <v-icon>add_box</v-icon>
+              </v-list-item-icon>
+                <v-list-item-content style="padding-top:16px;">Add Category</v-list-item-content>
             </router-link>
         </v-list-item>
       </v-list>
