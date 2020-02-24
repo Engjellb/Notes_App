@@ -54,14 +54,13 @@ router.post('/signin', async (req, res) => {
             }
         };
 
-        jwt.sign(payload, 'secret', {expiresIn: '1h'}, (err, token) => {
-            if (err) throw err;
-            res.status(200).send({
-                token,
-                user
-            });
+        jwt.sign(payload, 'secret', {expiresIn: 3600}, (err, token) => {
+          if (err) throw err;
+          res.status(200).send({
+            token,
+            user
+          })
         });
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -73,7 +72,7 @@ router.post('/signin', async (req, res) => {
 router.get('/me', auth, async (req, res) => {
     try {
         const user = await Users.findById(req.user.id);
-        res.json(user);
+        res.send(user);
     } catch (e) {
         res.send({message: 'Error in fetching user'})
     };

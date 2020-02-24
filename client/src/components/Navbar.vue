@@ -37,34 +37,37 @@
     <v-navigation-drawer dark v-model="drawer" disable-resize-watcher
     class="blue-grey darken-2" app>
       <v-list class="blue-grey darken-2 ml-3">
-        <v-row class="mt-4">
+        <v-row class="mt-1" v-if="!$store.state.user">
           <v-col xs="4" class="flex-grow-0 pr-0">
             <v-img src="../assets/Notes.png" max-width="45"></v-img>
           </v-col>
           <v-col xs="8" class="align-self-center pl-0">
-            <span class="font-weight-bold font-italic headline ml-1">NotesApp</span>
+            <span class="font-weight-bold font-italic headline ml-1">
+              NotesApp
+            </span>
+          </v-col>
+        </v-row>
+        <v-row class="mt-1" v-else>
+          <v-col xs="4" class="flex-grow-0 pr-0">
+            <v-img src="../assets/Notes.png" max-width="45"></v-img>
+          </v-col>
+          <v-col xs="8" class="align-self-center pl-0">
+            <span class="font-weight-bold font-italic headline ml-1">
+              {{this.$store.state.user.Firstname}}
+            </span>
           </v-col>
         </v-row>
         <v-divider></v-divider>
         <v-list-item v-if="!$store.state.token" class="mt-2">
-          <v-list-item-icon>
-            <v-icon>assignment_ind</v-icon>
-          </v-list-item-icon>
           <v-list-item-content>Sign In</v-list-item-content>
         </v-list-item>
 
         <v-list-item v-if="!$store.state.isUserLoggedIn">
-          <v-list-item-icon>
-            <v-icon>account_circle</v-icon>
-          </v-list-item-icon>
           <v-list-item-content>Sign Up</v-list-item-content>
         </v-list-item>
         <v-list-item v-if="$store.state.isUserLoggedIn">
             <router-link 
             to="/AddNotes" tag="v-list-item" style="cursor:pointer;">
-              <v-list-item-icon style="float:left;">
-                  <v-icon>add_box</v-icon>
-              </v-list-item-icon>
                 <v-list-item-content 
                 style="padding-top:16px;">Add Note</v-list-item-content>
             </router-link>
@@ -72,30 +75,27 @@
         <v-list-item v-if="$store.state.isUserLoggedIn">
             <router-link
             to="/Notes" tag="v-list-item" style="cursor:pointer;">
-              <v-list-item-icon style="float:left;">
-                  <v-icon>archive</v-icon>
-              </v-list-item-icon>
                 <v-list-item-content style="padding-top:16px;">Notes</v-list-item-content>
-            </router-link>
-        </v-list-item>
-        <v-spacer></v-spacer>
-        <v-list-item v-if="$store.state.isUserLoggedIn">
-            <router-link
-            to="/" tag="v-list-item" style="cursor:pointer;">
-              <v-list-item-icon style="float:left;">
-                  <v-icon>assignment_return</v-icon>
-              </v-list-item-icon>
-                <v-list-item-content @click="signout"
-                style="padding-top:16px;">Sign Out</v-list-item-content>
             </router-link>
         </v-list-item>
         <v-list-item v-if="$store.state.isUserLoggedIn">
             <router-link
             to="/AddCategory" tag="v-list-item" style="cursor:pointer;">
-              <v-list-item-icon style="float:left;">
-                  <v-icon>add_box</v-icon>
-              </v-list-item-icon>
                 <v-list-item-content style="padding-top:16px;">Add Category</v-list-item-content>
+            </router-link>
+        </v-list-item>
+        <v-list-item v-if="$store.state.isUserLoggedIn">
+            <router-link
+            to="/CategoryList" tag="v-list-item" style="cursor:pointer;">
+                <v-list-item-content style="padding-top:16px;">Categories</v-list-item-content>
+            </router-link>
+        </v-list-item>
+        <v-divider style="position:relative;top:272px;"></v-divider>
+        <v-list-item v-if="$store.state.isUserLoggedIn" id="signout">
+            <router-link
+            to="/" tag="v-list-item" style="cursor:pointer;">
+                <v-list-item-content @click="signout"
+                style="padding-top:16px;">Sign Out</v-list-item-content>
             </router-link>
         </v-list-item>
       </v-list>
@@ -114,6 +114,7 @@ export default {
       signout () {
         this.$store.dispatch('setToken', null);
         this.$store.dispatch('setUser', null);
+        this.drawer = false;
         this.$router.push({
           name: 'Home'
         })
@@ -130,5 +131,8 @@ export default {
 }
 </script>
 <style scoped>
-
+#signout {
+  position: absolute;
+  bottom: 10px;
+}
 </style>

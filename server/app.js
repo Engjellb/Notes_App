@@ -7,6 +7,7 @@ const configDB = require('./config/Database');
 const notes = require('./routes/notes');
 const users = require('./routes/users');
 const categories = require('./routes/categories');
+const contacts = require('./routes/contacts');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/notes/:id', notes);
 app.use('/notes/populate/:id', notes);
 app.use('/users', users);
 app.use('/categories', categories);
+app.use('/contacts', contacts);
 
 const port = process.env.PORT || 8081;
 

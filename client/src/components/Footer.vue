@@ -5,7 +5,7 @@
           <v-btn to="/" icon>
             <v-icon size="24px">mdi-home</v-icon>
           </v-btn>
-          <v-btn icon class="ml-4">
+          <v-btn icon class="ml-4" to="/Contact">
             <v-icon size="24px">mdi-email</v-icon>
           </v-btn>
         </v-card-text>

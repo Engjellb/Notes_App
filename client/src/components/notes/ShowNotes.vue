@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="d-flex flex-wrap">
       <v-col md="3" sm="4" cols="12" v-for="notes in showNotes" :key="notes._id">
-        <v-card>
+        <v-card class="card">
           <v-list-item>
             <v-list-item-content>
               <div class="overline mb-4">{{notes.createdAt | parseDate}}</div>
@@ -10,10 +10,7 @@
               <v-list-item-subtitle class="mt-4">{{notes.Description}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-card-action>
-            <v-btn icon>
-              <v-icon>favorite</v-icon>    
-            </v-btn>
+          <v-card-action class="text-right">
             <v-btn icon :to="{name: 'EditNote', params: { id: notes._id }}">
               <v-icon>create</v-icon>    
             </v-btn>
@@ -65,11 +62,11 @@ export default {
             if (Object.keys(response.data).length === 0){
               this.showNoteMessage = true
             }
-            if (this.$store.state.token == null) {
-              this.$router.push({
-                name: 'SignIn'
-              })
-            }
+            // if (this.$store.state.token == null) {
+            //   this.$router.push({
+            //     name: 'SignIn'
+            //   })
+            // }
             this.showNotes = response.data           
       })
   },
@@ -91,3 +88,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.v-card:not(.v-sheet--tile):not(.v-card--shaped) {
+  border-radius: 12px;
+}
+</style>

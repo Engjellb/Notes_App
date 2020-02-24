@@ -34,9 +34,15 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({
-          name: 'Notes'
-        })
+        if (this.$store.state.user.Email === 'engjibeselica@gmail.com') {
+          this.$router.push({
+          name: 'ContactsLists'
+        });
+        } else {
+          this.$router.push({
+            name: 'Notes'
+          });
+        }
       } catch (err) {
         this.error = err.response.data.message
       }
