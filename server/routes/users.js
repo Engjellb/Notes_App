@@ -4,9 +4,21 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
+const { check , validationResult } = require('express-validator');
 
-router.post('/', (req, res) => {
+router.post('/', [
 
+  check('Firstname', 'Firstname should not be empty').not().isEmpty().isString(),
+  check('Lastname', 'Lastname should not be empty').not().isEmpty().isString(),
+  check('Email', 'Email should not be empty').not().isEmpty().isEmail(),
+  check('Password', 'Password should not be empty').not().isEmpty()
+  ] , (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     const user = new Users({
         Firstname: req.body.Firstname,
         Lastname: req.body.Lastname,
